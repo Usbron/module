@@ -24,6 +24,11 @@ void ex3(double a, double b, double c)
    double D;
    double x1;
    double x2;
+   if (a == 0)
+   {
+      printf("Error!");
+      exit(EXIT_FAILURE);
+   }
    D = b * b - 4 * a * c;
    if (D > 0)
    {
@@ -37,7 +42,7 @@ void ex3(double a, double b, double c)
       printf("%f", x1);
    }
    else
-      printf("Нет корней");
+      printf("No results");
 
 }
 
