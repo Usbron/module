@@ -1,117 +1,122 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
-#include "functions.h"
-
-void ex1(double a, double c, double x)
+﻿#include<stdio.h>
+#include<stdlib.h>
+#include <string.h>
+void ex_1(char* a)
 {
-   double L;
-   L = (sqrt(exp(x) - pow(cos(x * x * pow(a, 5)), 4)) + pow(atan(a - pow(x, 5)), 4)) / (exp(1) * sqrt(abs(a + x * pow(c, 4))));
-   printf("%f", L);
+   
+   int i, j = 0, k = 0, n = 0;
+   
+   int l = strlen(a);
 
-}
-
-void ex2(double t)
-{
-   double S;
-   S = 3 * t * t - 6 * t;
-   printf("%f", S);
-}
-
-void ex3(double a, double b, double c)
-{
-   double D;
-   double x1;
-   double x2;
-   if (a == 0)
-   {
-      printf("Error!");
-      exit(EXIT_FAILURE);
-   }
-   D = b * b - 4 * a * c;
-   if (D > 0)
-   {
-      x1 = (-b + sqrt(D)) / (2 * a);
-      x2 = (-b - sqrt(D)) / (2 * a);
-      prinf("%f, %f", x1, x2);
-   }
-   if (D == 0)
-   {
-      x1 = -b / (2 * a);
-      printf("%f", x1);
-   }
-   else
-      printf("No results");
-
-}
-
-void ex4(int c, double t)
-{
-   switch (c)
-   {
-   case 48:
-      return 15 * (t / 60);
-   case 44:
-      return 18 * (t / 60);
-   case 46:
-      return 13 * (t / 60);
-   case 45:
-      return 11 * (t / 60);
-   default:
-      break;
-
-   }
-}
-
-void ex5()
-{
-   for (int i = 1000; i < 10000; ++i)
-   {
-      int q = i;
-      int s = 0;
-      for (int k = 0; k < 4; ++k)
+   for (i = 1; i < l; i++)
+      if (a[i] == ' ')
       {
-         s += pow(q % 10, 4);
-         q = q / 10;
-      }
-      if (q == i)
-         printf("%d", i);
+         if (n == 0) n = i;
+         k = i + 1;
+      };
+   int q = l - k;
 
-   }
+   for (i = k; i < l; ++i)
+      printf("%c", a[i]);
+   
+   for (i = n; i < l - q; i++)
+      printf("%c", a[i]);       
+
+   for (i = 0; i <= n; i++)
+      printf("%c", a[i]);     
+
+   return 0;
 }
 
-void ex6(int* arr, int n)
+struct Inf
 {
-   int k = 0;
-   int num = 0;
-   int q = n - 1;
-   while (k < q)
+   char Name[32];
+   char Surname[32];
+   char Patronymic[32];
+   char Sex[32];
+   char Job[32];
+   int Day;
+   int Month;
+   int Year;
+};
+void ex_2()
+{
+   int N = 0;
+   printf("Number\n");
+   scanf_s("%d", &N);
+   struct Inf* arr = (struct Inf*)malloc(N * sizeof(struct Inf));
+   for (int i = 0; i < N; ++i)
    {
-      num += arr[k] * pow(2, q);
-      k++;
-      q--;
+      printf("Enter the Name: ");
+      fscanf_s(stdin, "%s", arr[i].Name, 32);
+
+      printf("Enter the Surname: ");
+      fscanf_s(stdin, "%s", arr[i].Surname, 32);
+
+      printf("Enter the Patronymic: ");
+      fscanf_s(stdin, "%s", arr[i].Patronymic, 32);
+
+      printf("Enter the Sex: ");
+      fscanf_s(stdin, "%s", arr[i].Sex, 32);
+
+      printf("Enter the job: ");
+      fscanf_s(stdin, "%s", arr[i].Job, 32);
+
+      printf("Enter the Day: ");
+      scanf_s("%d", &arr[i].Day);
+
+      printf("Enter the Month: ");
+      scanf_s("%d", &arr[i].Month);
+
+      printf("Enter the Year: ");
+      scanf_s("%d", &arr[i].Year);
 
    }
-   printf("%d", num);
-}
-
-void ex7(int I, int J)
-{
-   srand(time(NULL));
-   int* L;
-   L = malloc(I * J * sizeof(int));
-   for (int i = 0; i < I * J; i++)
+   for (int i = 0; i < N; ++i)
    {
-      L[i] = -((rand() % 21) - 10) * 3;
-   }
-   for (int i = 0; i < I; i++)
-   {
-      for (int j = 0; j < J; j++)
+      if (strcmp(arr[i].Job, "Engineer") == 0)
       {
-         printf("%d", L[i * J + j]);
+         if (strcmp(arr[i].Sex, "M") == 0 && 2021 - arr[i].Year > 65)
+            printf("%s %s %s %s %s %d.%d.%d\n", arr[i].Name, arr[i].Surname, arr[i].Patronymic, arr[i].Sex, arr[i].Job, arr[i].Day, arr[i].Month, arr[i].Year);
+
+         if (strcmp(arr[i].Sex, "F") == 0 && 2021 - arr[i].Year > 60)
+            printf("%s %s %s %s %s %d.%d.%d\n", arr[i].Name, arr[i].Surname, arr[i].Patronymic, arr[i].Sex, arr[i].Job, arr[i].Day, arr[i].Month, arr[i].Year);
       }
-      printf("\n");
-   }  
+   }
 }
 
+void ex_3()
+{
+   FILE* f = NULL;
+   FILE* g = NULL;
+
+   fopen_s(&f, "f.txt", "r");
+   if (!f)
+   {
+      printf("File not opened\n");
+      return 0;
+   }
+
+   fopen_s(&g, "g.txt", "w");
+   if (!g)
+   {
+      printf("File not opened\n");
+      return 0;
+   }
+   int k = 1;
+   for (char bd; fscanf_s(f, "%c", &bd) != EOF;)
+   {
+      if (bd == 'ï' || bd == 'Ï' || k % 4 == 0)
+      {
+         k++;
+         while (bd != ' ')
+            fscanf_s(f, "%c", &bd);
+      }
+      else
+      {
+         fprintf_s(g, "%c", bd);
+      }
+   }
+   fclose(f);
+   fclose(g);
+}
