@@ -59,7 +59,7 @@ void ex_2()
       printf("Enter the Sex: ");
       fscanf_s(stdin, "%s", arr[i].Sex, 32);
 
-      printf("Enter the job: ");
+      printf("Enter the Job: ");
       fscanf_s(stdin, "%s", arr[i].Job, 32);
 
       printf("Enter the Day: ");
@@ -77,10 +77,10 @@ void ex_2()
       if (strcmp(arr[i].Job, "Engineer") == 0)
       {
          if (strcmp(arr[i].Sex, "M") == 0 && 2021 - arr[i].Year > 65)
-            printf("%s %s %s %s %s %d.%d.%d\n", arr[i].Name, arr[i].Surname, arr[i].Patronymic, arr[i].Sex, arr[i].Job, arr[i].Day, arr[i].Month, arr[i].Year);
+            printf("Name = %s, Surname = %s, Patronymic = %s, Sex = %s, Job = %s, Date = %d.%d.%d\n", arr[i].Name, arr[i].Surname, arr[i].Patronymic, arr[i].Sex, arr[i].Job, arr[i].Day, arr[i].Month, arr[i].Year);
 
          if (strcmp(arr[i].Sex, "F") == 0 && 2021 - arr[i].Year > 60)
-            printf("%s %s %s %s %s %d.%d.%d\n", arr[i].Name, arr[i].Surname, arr[i].Patronymic, arr[i].Sex, arr[i].Job, arr[i].Day, arr[i].Month, arr[i].Year);
+            printf("Name = %s, Surname = %s, Patronymic = %s, Sex = %s, Job = %s, Date = %d.%d.%d\n", arr[i].Name, arr[i].Surname, arr[i].Patronymic, arr[i].Sex, arr[i].Job, arr[i].Day, arr[i].Month, arr[i].Year);
       }
    }
 }
